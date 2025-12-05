@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Becky's Fashion  | Luxury Boutique | Curated by MRS. Rebecca Boahen</title>
+    <link rel="stylesheet" href="https://use.typekit.net/xyz.css"> <!-- Premium font link -->
+    <style>
+        :root {
+            --champagne: #F7E7CE;
+            --cashmere: #E3C9B5;
+            --caviar: #1E1E1E;
+            --blush: #E8C4C4;
+            --gold: #D4AF37;
+            --spacing-xl: 120px;
+            --spacing-lg: 80px;
+            --spacing-md: 50px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "neue-haas-grotesk", sans-serif;
+            color: var(--caviar);
+            background-color: #FAFAFA;
+            overflow-x: hidden;
+        }
+        
+        /* Premium Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--champagne);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        
+        /* Micro-interactions */
+        .hover-scale {
+            transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Luxury Typography */
+        h1, h2, h3, .display {
+            font-family: "ivypresto-display", serif;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+                url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, #FAFAFA);
+        }
+        
+        .hero-content {
+            width: 100%;
+            padding: 0 var(--spacing-xl);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .display {
+            font-size: 5.5vw;
+            line-height: 1;
+            margin-bottom: 30px;
+            max-width: 80%;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 50px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        /* Luxury Button */
+        .cta-luxury {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 42px;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .cta-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .cta-luxury:hover {
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        
+        .cta-luxury:hover::before {
+            left: 100%;
+        }
+        
+        .cta-luxury.primary {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--caviar);
+            font-weight: 500;
+        }
+        
+        /* Marquee */
+        .marquee {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            background: var(--caviar);
+            color: var(--champagne);
+            padding: 20px 0;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Collection Section */
+        .collection {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 var(--spacing-xl);
+        }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .product-card:hover .product-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+        
+        /* Bespoke Section */
+        .bespoke {
+            height: 70vh;
+            min-height: 600px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 0 var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .bespoke-content {
+            max-width: 600px;
+        }
+        
+        .bespoke h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .bespoke p {
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: var(--spacing-xl);
+            text-align: center;
+            background: var(--champagne);
+        }
+        
+        .contact h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+        
+        .phone-link {
+            display: inline-block;
+            font-size: 2rem;
+            color: var(--caviar);
+            text-decoration: none;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .phone-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--caviar);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .phone-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--caviar);
+            color: var(--champagne);
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: "ivypresto-display", serif;
+        }
+        
+        .footer-info {
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        
+        .owner-signature {
+            margin-top: 50px;
+            font-style: italic;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            :root {
+                --spacing-xl: 60px;
+                --spacing-lg: 50px;
+            }
+            
+            .display {
+                font-size: 7vw;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --spacing-xl: 40px;
+                --spacing-md: 30px;
+            }
+            
+            .hero {
+                min-height: 600px;
+            }
+            
+            .display {
+                font-size: 9vw;
+                max-width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bespoke h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="display">Becky's Fashion </h1>
+            <p class="hero-subtitle">Curated luxury at accessible prices. Each piece hand-selected by MRS. Rebecca Boahen for the discerning client who values both quality and value.</p>
+            <a href="#collection" class="cta-luxury">Explore Collection</a>
+            <a href="tel:+233558771370" class="cta-luxury primary" style="margin-left: 20px;">Concierge Service</a>
+        </div>
+    </section>
+    
+    <div class="marquee">
+        <span>Luxury fabrics · Hand-selected pieces · Personal styling consultations · Exclusive prices · Premium quality · By appointment available ·</span>
+    </div>
+    
+    <section class="collection" id="collection">
+        <div class="section-header">
+            <h2>The Collection</h2>
+            <p>Our curated selection of investment pieces that transcend seasons. Each item selected for its craftsmanship, fabric quality, and timeless appeal.</p>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Signature Blazer" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Signature Wool Blazer</h3>
+                    <div class="product-price">$129</div>
+                    <a href="tel:+233558771370" class="cta-luxury" style="margin-top: 15px; padding: 12px 25px;">Order</a>
+                </div>
+            </div>
+            
+            <div class="product-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Silk Dress" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Evening Silk Dress</h3>
+                    <div class="product-price">$149</div>
+                    <a href="tel:+233558771370" class="cta-luxury" style="margin-top: 15px; padding: 12px 25px;">Order</a>
+                </div>
+            </div>
+            
+            <div class="product-card hover-scale">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cashmere Set" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Cashmere Lounge Set</h3>
+                    <div class="product-price">$179</div>
+                    <a href="tel:+233558771370" class="cta-luxury" style="margin-top: 15px; padding: 12px 25px;">Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="bespoke">
+        <div class="bespoke-content">
+            <h2>Bespoke Consultations</h2>
+            <p>Can't find exactly what you're looking for? Our personal shopping service connects you directly with MRS. Rebecca Boahen who will source or custom-order pieces tailored to your exact preferences and measurements.</p>
+            <a href="tel:+233558771370" class="cta-luxury primary">Schedule Consultation</a>
+        </div>
+    </section>
+    
+    <section class="contact">
+        <h2>Personalized Service</h2>
+        <p>We believe true luxury is in the experience. Contact us directly for styling advice, sizing questions, or special requests.</p>
+        <a href="tel:+233558771370" class="phone-link">+23355 877 1370</a>
+        <p>Available 10AM-6PM, Tuesday-Saturday</p>
+    </section>
+    
+    <footer>
+        <div class="footer-logo">Becky's Fashion </div>
+        <div class="footer-info">
+            A boutique experience offering premium quality at accessible prices. Each piece in our collection is personally selected by owner and fashion curator Rebecca Boahen.
+        </div>
+        <div class="owner-signature">— MRS. Rebecca Boahen</div>
+    </footer>
+</body>
+</html>
